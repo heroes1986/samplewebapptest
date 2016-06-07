@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System.Configuration;
+using NUnit.Framework;
 using OpenQA.Selenium;
 
 namespace SampleWebAutomationTest
@@ -9,6 +10,7 @@ namespace SampleWebAutomationTest
     {
         private IWebDriver _driver;
         private readonly DriverType _type;
+        private string _url;
 
         public LandingPageTests(DriverType type)
         {
@@ -19,6 +21,7 @@ namespace SampleWebAutomationTest
         public void OneTimeSetup()
         {
             _driver = DriverFactory.Instance.GetDriver(_type);
+            _url = ConfigurationManager.AppSettings["baseUrl"];
         }
 
         [TestFixtureTearDown]
@@ -31,7 +34,7 @@ namespace SampleWebAutomationTest
         [SetUp]
         public void SetUp()
         {
-            _driver.Navigate().GoToUrl("http://test.sampleapp.com/");
+            _driver.Navigate().GoToUrl(_url);
         }
 
         [TestCase("about")]
@@ -51,7 +54,7 @@ namespace SampleWebAutomationTest
         public void About_Navigation_To_About_Page_Return_Ok(string id)
         {
             // Arrange
-            var expectedUrl = "http://test.sampleapp.com/Home/About";
+            var expectedUrl = string.Format("{0}Home/About", _url);//"http://test.sampleapp.com/Home/About";
 
             var element = _driver.FindElement(By.Id(id));
             var url = element.GetAttribute("href");
@@ -81,7 +84,7 @@ namespace SampleWebAutomationTest
         public void Contact_Navigation_To_Contact_Page_Return_Ok(string id)
         {
             // Arrange
-            var expectedUrl = "http://test.sampleapp.com/Home/Contact";
+            var expectedUrl = string.Format("{0}Home/Contact", _url);//"http://test.sampleapp.com/Home/Contact";
 
             var element = _driver.FindElement(By.Id(id));
             var url = element.GetAttribute("href");

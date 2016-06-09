@@ -4,8 +4,8 @@ using OpenQA.Selenium;
 
 namespace SampleWebAutomationTest
 {
-    //[TestFixture(DriverType.PhantomJs)]
-    [TestFixture(DriverType.Chrome)]
+    [TestFixture(DriverType.PhantomJs)]
+    //[TestFixture(DriverType.Chrome)]
     public class LandingPageTests
     {
         private IWebDriver _driver;

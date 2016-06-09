@@ -21,7 +21,6 @@ namespace SampleWebAutomationTest
     }
     public class DriverFactory : IDriverFactory
     {
-        private string _directory = @"C:\Project\Others\SampleWebAutomationTest\packages\EXEFiles"; 
         private static IDriverFactory _instance;
         public static IDriverFactory Instance
         {

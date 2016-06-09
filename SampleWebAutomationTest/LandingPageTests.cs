@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 using NUnit.Framework;
 using OpenQA.Selenium;
 
@@ -15,6 +16,7 @@ namespace SampleWebAutomationTest
         public LandingPageTests(DriverType type)
         {
             _type = type;
+            Console.WriteLine("Current driver type : {0}", type);
         }
 
         [TestFixtureSetUp]
